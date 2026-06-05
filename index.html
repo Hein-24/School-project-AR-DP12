@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/script.js"></script>
+    <title>Document</title>
+</head>
+<body> 
+     
+    <!-- visual effects and particles -->
+    <div id="effect-overlay" class="effect-overlay"></div>
+    <a-scene>
+
+        <a-assets>
+            <a-asset-item id="village-model" src="assets/castle_village_scene.glb"></a-asset-item>
+            <a-asset-item id="Darkling-model" src="assets/darkling1.glb"></a-asset-item>
+        </a-assets>
+
+
+        <!-- Night sky with golden stars 
+        <a-entity environment="
+            preset: forest; 
+            shadow: true; 
+            skyType: gradient; 
+            skyColor: #014a7a; 
+            horizonColor: #6092b3;">
+        </a-entity>
+        -->
+
+        <a-sky color="#c0c0c0"></a-sky>
+        
+    
+
+        <!-- Castle vilage model -->
+        <a-entity gltf-model="#village-model" position="0 1.53 0" scale="9 9 9"></a-entity>
+
+        <!-- Darkling model -->
+        <a-entity id="darkling-target" gltf-model="#Darkling-model" position="0 1.369 0.5" scale="0.006 0.006 0.006"></a-entity>
+
+         <!--camera WASD movement and mouse movement + camera tilt-->
+        <a-entity id="camera-rig" position="0 0 0"> 
+            <a-entity id="camera" camera look-controls wasd-controls=magicWindowTrackingEnabled: true; touchEnabled: true" wasd-controls="acceleration: 7.3" position="0 1.6 0"></a-entity>
+        </a-entity>
+       
+    </a-scene>
+
+   
+     
+   
+
+
+
+
+    <div class="kh-ui">
+        <div class="top-left-group">
+            <div class="lockon">LOCK ON!</div>
+            <div class="enemy-hp-panel">
+                <div class="enemy-label">HP</div>
+                <div class="enemy-hp-bar">
+                    <div id="enemy-hp-fill" class="enemy-hp-fill" style="width:100%"></div>
+                </div>
+                <div id="enemy-hp-text" class="enemy-hp-value">5000 / 5000</div>
+            </div>
+        </div>
+        
+        <div class="status-badge-container">
+                <div id="status-bleed" class="status-icon-badge hidden">
+                    <div class="icon-wrapper">
+                        <img src="assets/BleedDebuff.png" alt="Bleed">
+                    </div>
+                    <span id="bleed-counter" class="badge-multiplier">1</span>
+                </div>
+
+                <div id="status-lethargy" class="status-icon-badge hidden">
+                    <div class="icon-wrapper">
+                        <img src="assets/LethargyDebuff.png" alt="Lethargy">
+                    </div>
+                    <span id="lethargy-counter" class="badge-multiplier">1</span>
+                </div>
+            </div>
+        </div>
+       
+
+            <!--command menu-->
+            <div class="command-pane">
+                <div class="command-title">Command</div>
+                <div class="command-list">
+                    <div class="command-item Attack" id="command-Attack">Attack<img src="RedKey_100621_image.png" alt="attack"></div>
+                    <div class="command-item Magic" id="command-Magic">Magic<img src="BlueKey_110530_image.png" alt="magic"></div>
+                    <div class="command-item Items" id="command-Items">Items<img src="GreenKey_110645_image.png" alt="items"></div>
+                    <div class="command-item Dash" id="command-Dash">—</div>
+                </div>
+            </div>
+        
+        </div>
+
+        <div class="protag-shell">
+            <div class="shell-frame"></div>
+            <div id="shell-gauge"class="shell-fill"></div>
+            <div class="shell-center">
+                <div class="protag-face"><img src ="Kirbo_011210_image.png" alt="Your character Potrait">
+                </div>
+                <div class="shell-text">
+                   <span id="player-hp-text" class="shell-stat">HP: 1200</span>
+                    <span id="player-mp-text" class="shell-stat">MP: 120</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="victory-screen" class="victory-modal hidden">
+        <div class="victory-box">
+            <h2>VICTORY</h2>
+            <p>Thanks for playing! Here is your exclusive reward item code:</p>
+            <div class="reward-code">KH-Event_Ultima_Disney-2026</div>
+        </div>
+    </div>
+</body>
+</html>
